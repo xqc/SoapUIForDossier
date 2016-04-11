@@ -1,0 +1,1 @@
+[{"flagged":false,"starred":false,"cells":[{"v":"2001-01-01","t":"date"},{"v":"A1"},{"v":12.23}],"i":0},{"flagged":false,"starred":false,"cells":[{"v":"2001-01-02","t":"date"},{"v":"A2"},{"v":44.12}],"i":1}]

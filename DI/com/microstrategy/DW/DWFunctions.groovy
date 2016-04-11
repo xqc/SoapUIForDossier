@@ -1,0 +1,53 @@
+package com.microstrategy.DW
+
+class DWFunctions {
+	public static final DELETECOLOMN = "DeleteColomn";
+	public static final DELETEROWSCONTAINS = "DeleteRowsContains" ;
+	public static final DELETEROWSBEGINS = "DeleteRowsBegins" ;
+	public static final DELETEROWSENDS = "DeleteRowsEnds" ;
+	public static final DELETEROWSBLANK = "DeleteRowsBlank" ;
+	public static final DELETEROWSEQUALS = "DeleteRowsEquals" ;
+	public static final DELETEROWSNOTEQUALS = "DeleteRowsNotEquals" ;
+	public static final DELETEREMOVEDUPLICATECELLS = "DeleteRemoveDuplicateCells" ;
+	public static final DELETEREMOVEDUPLICATEROW = "DeleteRemoveDuplicateRow" ;
+	public static final EXTRACTON = "ExtractOn" ;
+	public static final EXTRACTFROMTO = "ExtractFromTo" ;
+	public static final EXTRACTBEFOREFIRST = "ExtractBeforeFirst" ;
+	public static final EXTRACTAFTERFIRST = "ExtractAfterFirst" ;
+	public static final EXTRACTBEFORELAST = "ExtractBeforeLast" ;
+	public static final EXTRACTAFTERLAST = "ExtractAfterLast" ;
+	public static final FINDANDREPLACECHARINCELL = "FindAndReplaceCharInCell" ;
+	public static final FINDANDREPLACECELLCONTAINS = "FindAndReplaceCellContains" ;
+	public static final FINDANDREPLACECELLBEGINSWITH = "FindAndReplaceCellBeginsWith" ;
+	public static final FINDANDREPLACECELLENDSWITH = "FindAndReplaceCellEndsWith" ;
+	public static final FINDANDREPLACECUTON = "FindAndReplaceCutOn" ;
+	public static final FINDANDREPLACECUTBEFORE = "FindAndReplaceCutBefore" ;
+	public static final FINDANDREPLACECUTAFTER = "FindAndReplaceCutAfter" ;
+	public static final SPLITBYSEPARATOR = "SplitBySeparator" ;
+	public static final SPLITBYFIELDLENGTHS = "SplitByFieldLengths" ;
+	public static final SPLITBEFOREFIRST = "SplitBeforeFirst" ;
+	public static final SPLITAFTERFIRST = "SplitAfterFirst" ;
+	public static final SPLITAFTERLAST = "SplitAfterLast" ;
+	public static final SPLITCELLINTOROW = "SplitCellIntoRow" ;
+    public static final TRANSFORMCELLTITLECASE = "TransformCellTitlecase" ;
+	public static final TRANSFORMCELLUPPERCASE = "TransformCellUppercase" ;
+	public static final TRANSFORMCELLLOWERCASE = "TransformCellLowercase" ;
+	public static final TRANSFORMCELLUNESCAPE = "TransformCellUnescape" ;
+	public static final TRANSFORMCELLTONUMBER = "TransformCellToNumber" ;
+	public static final TRANSFORMCELLTOTEXT = "TransformCellToText" ;
+	public static final TRANSFORMCELLTODATE = "TransformCellToDate" ;
+	public static final TRANSFORMCELLFILLDOWN = "TransformCellFillDown" ;
+	public static final TRANSFORMCELLBLANKDOWN = "TransformCellBlankDown" ;
+    public static final TRANSFORMCELLPADBEFORE = "TransformCellPadBefore" ;
+    public static final TRANSFORMCELLPADAFTER = "TransformCellPadAfter" ;
+	public static final WHITESPACETRIM = "WhitespaceTrim" ;
+	public static final WHITESPACECOLLAPSE = "WhitespaceCollapse" ;
+	public static final OTHERDUPLICATE = "OtherDuplicate" ;
+	public static final OTHERRENAME = "OtherRename" ;
+	public static final OTHERCONCATENATECOLUMNS = "OtherConcatenateColumns" ;
+	public static final OTHERTRANSPOSECOLUMNSINTOROWS = "OtherTransposeColumnsIntoRows" ;
+	public static final CLUSTERANDEDITOPEN = "ClusterAndEditOpen"
+	public static final CLUSTERANDEDIT = "ClusterAndEdit" ;
+	public static final EDITAPPLYALL = "EditApplyAll" ;
+	public static final EDITSINGLECELL = "EditSingleCell" ;
+}

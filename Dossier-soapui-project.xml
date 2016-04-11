@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c71b087f-c8d0-4cb3-9e3d-4da6408ffd56" activeEnvironment="Default" name="Dossier" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="TestSuite"/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="TC01_getSession"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Select Report Type" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:RestService" id="9d8f4459-66b8-47ce-ab5a-084c04b50988" wadlVersion="http://wadl.dev.java.net/2009/02" name="Connection" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>${#Project#webServer}</con:endpoint><con:endpoint>http://dossier:8080</con:endpoint></con:endpoints><con:resource name="Session" path="/${#Project#webResourceAPI}/session" id="efe4c6d5-4378-4574-ba1e-21f76fb1f353"><con:settings/><con:parameters/><con:method name="postSession" id="a15e1ffa-17d7-4d09-9125-24317b67ccdd" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>500 415 401</con:status><con:params/><con:element xmlns:ses="http://dossier/consume-dev/api/session;authMode=1;userName=administrator;password;usherToken=string">ses:Fault</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ses="http://dossier/consume-dev/api/session;authMode=1;userName=administrator;password;usherToken=string">ses:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/x-www-form-urlencoded</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/plain</con:mediaType><con:status>400</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="postSession" id="adc89108-4af7-4e51-a49a-00823731abc0" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request>{
+  "authMode": 1,
+  "userName": ${#TestCase#userName},
+  "password": ${#TestCase#password},
+  "usherToken": "string"
+}</con:request><con:originalUri>http://dossier/consume-dev/api/session;authMode=1;userName=administrator;password;usherToken=string</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder/></con:request></con:method></con:resource><con:resource name="Dossier" path="/${#Project#webResourceAPI}/dossier/${#TestCase#dossierId}/instance" id="dfe14962-fdcc-4421-84a0-528f09525c2f"><con:settings/><con:parameters><con:parameter><con:name>X-MSTR-ISession</con:name><con:value>${#TestCase#sessionID}</con:value><con:style>HEADER</con:style><con:default>${#TestCase#sessionID}</con:default><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>Cookie</con:name><con:value/><con:style>HEADER</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>X-MSTR-ProjectID</con:name><con:style>HEADER</con:style></con:parameter><con:parameter><con:name>X-MSTR-ProjectID</con:name><con:style>HEADER</con:style></con:parameter><con:parameter><con:name>X-MSTR-ProjectID</con:name><con:style>HEADER</con:style></con:parameter></con:parameters><con:method name="getDossiers" id="e233da6d-48ef-4ce7-970a-a36ef7ca614c" method="GET"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>404 401 405</con:status><con:params/><con:element xmlns:dos="http://dossier/consume-dev/api/dossier">dos:Fault</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="getDossiers" id="00231c8d-bbdb-45b1-8740-cd44e44eac9b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossiers</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="Cookie" value="${#TestCase#Cookie}"/>
+  <con:entry key="X-MSTR-ISession" value="${#TestCase#X-MSTR-ISession}"/>
+</con:parameters><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry></con:parameterOrder></con:request></con:method><con:method name="postDossierInstance" id="1b6fe065-84a7-4622-a183-85a00644d265" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>404 401</con:status><con:params/></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="postDossierInstance" id="8203c948-f314-4431-9791-0faaad38b150" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossier//instance</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="X-MSTR-ProjectID" value="${#TestCase#X-MSTR-ProjectID}"/>
+  <con:entry key="Cookie" value="${#TestCase#Cookie}"/>
+  <con:entry key="X-MSTR-ISession" value="${#TestCase#X-MSTR-ISession}"/>
+</con:parameters><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry><con:entry/></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="23df4f1a-c893-4591-ac71-1cba15bf4104" name="TestSuite"><con:description>TestSuite generated for REST Service [http://dossier:8080]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="8f605d6f-6630-4574-8a7c-04becef5f22e" failOnError="true" failTestCaseOnErrors="true" keepSession="true" maxResults="0" name="TC01_getSession" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:description>TestCase generated for REST Resource [Api] located at [/consume-dev/api]</con:description><con:settings/><con:testStep type="restrequest" name="getSession" id="32d13244-5711-4737-9e03-8f19805a355a"><con:settings/><con:config service="Connection" resourcePath="/${#Project#webResourceAPI}/session" methodName="postSession" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getSession" id="adc89108-4af7-4e51-a49a-00823731abc0" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@follow-redirects">true</con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request>{
+  "authMode": 1,
+  "userName": ${#TestCase#userName},
+  "password": ${#TestCase#password},
+  "usherToken": "String"
+}</con:request><con:originalUri>http://dossier/consume-dev/api/session;authMode=1;userName=administrator;password;usherToken=string</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="setSessionID" id="817ab2d8-ecbd-46a6-91fc-7d39da3544d1"><con:description>get the session ID from "getSession" request</con:description><con:settings/><con:config><script>import groovy.json.*
+
+// This script assertion is used to get the i-server "X-MSTR-ISession" property from the request and keep it in the test case level
+def response = testRunner.testCase.getTestStepByName("getSession").getProperty("Response").getValue()
+log.info response
+def responseJSON = new JsonSlurper().parseText(response)
+def sessionID = responseJSON.sessionID
+log.info sessionID
+testRunner.testCase.setPropertyValue("X-MSTR-ISession",sessionID)
+
+//get the cookies from the response, put it into the test case level parameter
+def set_cookie = testRunner.testCase.getTestStepByName("getSession").testRequest.response.responseHeaders["Set-Cookie"]
+log.info set_cookie[0]
+testRunner.testCase.setPropertyValue("Cookie",set_cookie[0])
+</script></con:config></con:testStep><con:testStep type="restrequest" name="getDossiers" id="34a1381a-342d-4c21-bdfe-5a9ce19cbb9c"><con:settings/><con:config service="Connection" resourcePath="/${#Project#webResourceAPI}/dossier/${#TestCase#dossierId}/instance" methodName="getDossiers" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getDossiers" id="00231c8d-bbdb-45b1-8740-cd44e44eac9b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossiers</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="14765360-2c0e-404c-b304-1ea9d527c5d2" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="Cookie" value="${#TestCase#Cookie}"/>
+  <con:entry key="X-MSTR-ISession" value="${#TestCase#X-MSTR-ISession}"/>
+</con:parameters><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="getDidPid" id="bbc44062-b4f5-4199-8aa5-1c2de56440c0"><con:settings/><con:config><script>import groovy.json.*
+
+/* Parse response with Json format to ArrayList type */
+def response = testRunner.testCase.getTestStepByName("getDossiers").getProperty("Response").getValue()
+def responseJSON = new JsonSlurper().parseText(response)
+
+/* Find the Dossier named with Merit, populate the DossierID and ProjectID */
+int size = responseJSON.size()
+for (int i=0; i&lt;size; i++){
+	if (responseJSON[i].name.equals("Merit"))
+	testRunner.testCase.setPropertyValue("dossierId",responseJSON[i].did)
+	testRunner.testCase.setPropertyValue("X-MSTR-ProjectID",responseJSON[i].pid)
+	log.info responseJSON[i].did
+}
+//testRunner.testCase.setPropertyValue("sessionID",sessionID)
+
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="postDossierInstance" id="32776288-826a-43e2-9934-3225d382b7e0"><con:settings/><con:config service="Connection" resourcePath="/${#Project#webResourceAPI}/dossier/${#TestCase#dossierId}/instance" methodName="postDossierInstance" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="postDossierInstance" id="8203c948-f314-4431-9791-0faaad38b150" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossier//instance</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="Cookie" value="${#TestCase#Cookie}"/>
+  <con:entry key="X-MSTR-ISession" value="${#TestCase#X-MSTR-ISession}"/>
+</con:parameters><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>userName</con:name><con:value>"administrator"</con:value></con:property><con:property><con:name>password</con:name><con:value>""</con:value></con:property><con:property><con:name>X-MSTR-ISession</con:name><con:value>pck83r9pvv4ianc6mre8st87cu</con:value></con:property><con:property><con:name>Cookie</con:name><con:value>JSESSIONID=2C20C5B105B383D95F4A2EEADC3FA50B; Path=/consume-dev/; HttpOnly</con:value></con:property><con:property><con:name>dossierId</con:name><con:value>700AE54811E5F5E83E590080EFA5E0E2</con:value></con:property><con:property><con:name>X-MSTR-ProjectID</con:name><con:value>45DA1A5941770FA74377E69CA8C3B296</con:value></con:property></con:properties></con:testCase><con:properties><con:property><con:name>Cookie</con:name><con:value>JSESSIONID=887EC5DE7543C328E685B5D0FFD2A553; Path=/consume-dev/; HttpOnly</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>webServer</con:name><con:value>http://dossier:8080</con:value></con:property><con:property><con:name>webResourceAPI</con:name><con:value>consume-dev/api</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

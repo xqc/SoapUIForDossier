@@ -1,0 +1,490 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Delete Column [DeleteColumn]",
+    "columnName": "Deletecolumn"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Delete Row(s) Where Cell Contains /@|#/ [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "@|#",
+          "name": "DeleteRow",
+          "caseSensitive": true,
+          "columnName": "Deleterow",
+          "type": "text",
+          "mode": "regex"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Delete Row(s) Where Cell Begins With /^dup/ [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "^dup",
+          "name": "DeleteRow",
+          "caseSensitive": true,
+          "columnName": "Deleterow",
+          "type": "text",
+          "mode": "regex"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Delete Row(s) Where Cell Ends With /LL$/ [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "LL$",
+          "name": "DeleteRow",
+          "caseSensitive": true,
+          "columnName": "Deleterow",
+          "type": "text",
+          "mode": "regex"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove Row(s) Where Cell Is Empty [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "invert": false,
+          "expression": "value",
+          "selectError": false,
+          "omitError": false,
+          "selectBlank": true,
+          "name": "DeleteRow",
+          "omitBlank": false,
+          "columnName": "Deleterow",
+          "type": "list",
+          "selection": []
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Delete Row(s) Where Cell Equals To 'abcd' [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "expression": "value",
+          "invert": false,
+          "selectError": false,
+          "omitError": false,
+          "name": "DeleteRow",
+          "selectBlank": false,
+          "columnName": "Deleterow",
+          "omitBlank": false,
+          "type": "list",
+          "selection": [
+            {
+              "v": {
+                "v": "abcd",
+                "l": "abcd"
+              }
+            }
+          ]
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Delete Row(s) Where Cell Not Equals To 'Keep' [DeleteRow] (#### Rows)",
+    "engineConfig": {
+      "facets": [
+        {
+          "expression": "value",
+          "invert": true,
+          "selectError": false,
+          "omitError": false,
+          "name": "DeleteRow",
+          "selectBlank": false,
+          "columnName": "Deleterow",
+          "omitBlank": false,
+          "type": "list",
+          "selection": [
+            {
+              "v": {
+                "v": "Keep",
+                "l": "Keep"
+              }
+            }
+          ]
+        }
+      ],
+      "mode": "row-based"
+    },
+    "invert": false
+  },
+  {
+    "op": "core/row-deduplicate",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "description": "Deduplicate rows",
+    "mode": "row-based",
+    "columnName": ""
+  },
+  {
+    "op": "core/row-deduplicate",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "description": "Deduplicate rows",
+    "mode": "column-based",
+    "columnName": "Removeduplicatecells"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract By Fixed Length {ExtractFromTo 1} [ExtractFromTo] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "ExtractFromTo 1",
+    "columnInsertIndex": 3,
+    "baseColumnName": "Extractfromto",
+    "expression": "grel:substring(value, 9, 12)",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Find And Replace Characters In Cell From '@' To '#' [FRCharInCell] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Frcharincell",
+    "expression": "grel:replace (value, '@', '#')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Find And Replace Cell Where Cell Contains 'NA()' To '0.0' [FRCell] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Frcell",
+    "expression": "grel:if(contains(value, 'NA()'), replace(value, value, '0.0'), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Find And Replace Cell Where Cell Begins With 'a' To '56' [FRCell] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Frcell",
+    "expression": "grel:if(startsWith(value, 'a'), replace(value, value, '56'), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Find And Replace Cell Where Cell Ends With 'xy' To '47.3' [FRCell] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Frcell",
+    "expression": "grel:if(endsWith(value, 'xy'), replace(value, value, '47.3'), value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Remove Characters /_/ [CutOn] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Cuton",
+    "expression": "grel:replace (value, /_/, '')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Remove Characters Before 'formation)' [CutBefore] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Cutbefore",
+    "expression": "grel:trim(if(isBlank(partition(value, 'formation)')[1]), value, partition(value, 'formation)')[1] + partition(value, 'formation)')[2]))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Remove Characters After '@' [CutAfter] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Cutafter",
+    "expression": "grel:trim(partition(value, '@')[0] + partition(value, '@')[1])",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split By Fixed Length [SplitByFieldLengths] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Splitbyfieldlengths",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "lengths",
+    "fieldLengths": [
+      9,
+      1,
+      3
+    ],
+    "keepRest": true,
+    "fieldForward": true
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Title Case [ToCase] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Tocase",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Uppercase [ToCase] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Tocase",
+    "expression": "value.toUppercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Lowercase [ToCase] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Tocase",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Unescape HTML [Unescape] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Unescape",
+    "expression": "value.unescape('html')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Number [TypeNumber] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Typenumber",
+    "expression": "value.toNumber()",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Text [TypeText] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Typetext",
+    "expression": "toString(value)",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "To Date 'dd/MM/yyyy' [TypeDate] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Typedate",
+    "expression": "grel:toDate(value, 'dd/MM/yyyy')",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/fill-down",
+    "description": "Fill Down [FillDown] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Filldown"
+  },
+  {
+    "op": "core/blank-down",
+    "description": "Blank Down [BlankDown] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Blankdown"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Pad Before 'aaa@' [PadBefore] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Padbefore",
+    "expression": "grel:'aaa@' + if(isNull(value), \"\", value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Pad After '#bb' [PadAfter] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Padafter",
+    "expression": "grel:if(isNull(value), \"\", value) + '#bb'",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Trim Leading And Trailing Whitespace [WhitespaceTrim] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Whitespacetrim",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Collapse Consecutive Whitespace [WhitespaceCollapse] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Whitespacecollapse",
+    "expression": "value.replace(/\\s+/,' ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Duplicate Column {Duplicate 1} [Duplicate] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Duplicate 1",
+    "columnInsertIndex": 25,
+    "baseColumnName": "Duplicate",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename Column [Rename] To {Rename1}",
+    "oldColumnName": "Rename",
+    "newColumnName": "Rename1"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Concatenate Column [Concatenate1] And Column [Concatenate2] To Column {Concatenate1 1} (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Concatenate1 1",
+    "columnInsertIndex": 29,
+    "baseColumnName": "Concatenate1",
+    "expression": "grel:if(isNull(cells[\"Concatenate1\"]),\"\",cells[\"Concatenate1\"].value) + \"\" + if(isNull(cells[\"Concatenate2\"]), \"\", cells[\"Concatenate2\"].value)",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/transpose-columns-into-rows",
+    "description": "Transpose cells in 2 column(s) starting with [Transpose1] into rows in two new columns named [Key] and [Value]",
+    "startColumnName": "Transpose1",
+    "columnCount": 2,
+    "ignoreBlankCells": true,
+    "fillDown": true,
+    "keyColumnName": "Key",
+    "valueColumnName": "Value"
+  }
+]

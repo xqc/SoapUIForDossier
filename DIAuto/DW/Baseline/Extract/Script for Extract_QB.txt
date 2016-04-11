@@ -1,0 +1,184 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Extract Before First ' ' {Extractbeforefirst 1} [Extractbeforefirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractbeforefirst 1",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Extractbeforefirst",
+    "expression": "grel:trim(partition(value, ' ')[0])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract Before First '\\t' {Extractbeforefirst 2} [Extractbeforefirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractbeforefirst 2",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Extractbeforefirst",
+    "expression": "grel:trim(partition(value, '\t')[0])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract Before First /\\d\\d/ {Extractbeforefirst 3} [Extractbeforefirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractbeforefirst 3",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Extractbeforefirst",
+    "expression": "grel:trim(partition(value, /\\d\\d/)[0])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract Before First '/abc/' {Extractbeforefirst 4} [Extractbeforefirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractbeforefirst 4",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Extractbeforefirst",
+    "expression": "grel:trim(partition(value, /abc/)[0])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract Before First /\\\\/ {Extractbeforefirst 5} [Extractbeforefirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractbeforefirst 5",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Extractbeforefirst",
+    "expression": "grel:trim(partition(value, /\\\\/)[0])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After First /\\$/ {Extractafterfirst 1} [Extractafterfirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterfirst 1",
+    "columnInsertIndex": 8,
+    "baseColumnName": "Extractafterfirst",
+    "expression": "grel:trim(partition(value, /\\$/)[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After First /\\|/ {Extractafterfirst 2} [Extractafterfirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterfirst 2",
+    "columnInsertIndex": 8,
+    "baseColumnName": "Extractafterfirst",
+    "expression": "grel:trim(partition(value, /\\|/)[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After First /\\n/ {Extractafterfirst 3} [Extractafterfirst] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterfirst 3",
+    "columnInsertIndex": 8,
+    "baseColumnName": "Extractafterfirst",
+    "expression": "grel:trim(partition(value, /\n/)[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After Last '.' {Extractafterlast 1} [Extractafterlast] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterlast 1",
+    "columnInsertIndex": 12,
+    "baseColumnName": "Extractafterlast",
+    "expression": "grel:trim(rpartition(value, '.')[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After Last '\\\\' {Extractafterlast 2} [Extractafterlast] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterlast 2",
+    "columnInsertIndex": 12,
+    "baseColumnName": "Extractafterlast",
+    "expression": "grel:trim(rpartition(value, '\\\\')[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract After Last /\\d\\d/ {Extractafterlast 3} [Extractafterlast] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extractafterlast 3",
+    "columnInsertIndex": 12,
+    "baseColumnName": "Extractafterlast",
+    "expression": "grel:trim(rpartition(value, /\\d\\d/)[2])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract On /,/ {ExtractOn 1} [ExtractOn] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extracton 1",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Extracton",
+    "expression": "grel:trim(partition(value, /,/)[1])",
+    "onError": "set-to-blank",
+    "omitted": false
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Extract On /\\\\/ {ExtractOn 2} [ExtractOn] (#### Rows)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "Extracton 2",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Extracton",
+    "expression": "grel:trim(partition(value, /\\\\/)[1])",
+    "onError": "set-to-blank",
+    "omitted": false
+  }
+]

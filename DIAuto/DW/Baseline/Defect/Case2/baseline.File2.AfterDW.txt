@@ -1,0 +1,1 @@
+[{"dcns":{"cln":"MyDate","cltp":14,"clix":1,"did":" "},"dvs":["1/1/2001","1/2/2001"]},{"dcns":{"cln":"MyAtt","cltp":33,"clix":2,"did":" "},"dvs":["A1","A2"]},{"dcns":{"cln":"MyMetric","cltp":33,"clix":3,"did":" "},"dvs":["12$$23","44$12"]},{"dcns":{"cln":"MyMetric 1","cltp":33,"clix":4,"did":" "},"dvs":["12","44$12"]}]
