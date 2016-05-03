@@ -169,7 +169,32 @@ def strTemp = location[0]
 def strTemp2 = strTemp.split("/")
 log.info strTemp2[strTemp2.length-1]
 
-testRunner.testCase.setPropertyValue("pageInstanceId",strTemp2[strTemp2.length-1])</script></con:config></con:testStep><con:testStep type="restrequest" name="getPageInstance" id="ed031c92-5903-453e-a6d6-7bc62d78fdf1"><con:settings/><con:config service="Connection" resourcePath="/${#Project#webResourceAPI}/dossier/{dossierId}/instance/{dossierInstanceId}/page/{pageKey}/instance/{pageInstanceId}" methodName="getPageInstanceWithID" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getPageInstance" id="d126a64f-532f-4a17-8289-21c3d6194cdd" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossier/1D2F562F4CF5FA9BCC8203B7A7F293B8/instance/6DF9983A11E600B5E6940080EFD56AF3/page/p48/instance/6EB53C0311E600B5E6940080EF15EBF6</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="b01944b8-fd7c-477b-89ac-2f153aa5821f" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry><con:entry>X-MSTR-ProjectID</con:entry><con:entry>dossierId</con:entry><con:entry>dossierInstanceId</con:entry><con:entry>pageKey</con:entry><con:entry>pageInstanceId</con:entry><con:entry>Accept</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="s_ComparePageData" id="3ef1007a-6862-4ef9-a3ea-25f77e8f5cc4"><con:settings/><con:config><script/></con:config></con:testStep><con:testStep type="groovy" name="Final_ResetEnvironmentVariables" id="d6bea485-3e40-4a13-b929-c0e5c889c459"><con:settings/><con:config><script>/*
+testRunner.testCase.setPropertyValue("pageInstanceId",strTemp2[strTemp2.length-1])</script></con:config></con:testStep><con:testStep type="restrequest" name="getPageInstance" id="ed031c92-5903-453e-a6d6-7bc62d78fdf1"><con:settings/><con:config service="Connection" resourcePath="/${#Project#webResourceAPI}/dossier/{dossierId}/instance/{dossierInstanceId}/page/{pageKey}/instance/{pageInstanceId}" methodName="getPageInstanceWithID" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getPageInstance" id="d126a64f-532f-4a17-8289-21c3d6194cdd" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#webServer}</con:endpoint><con:request/><con:originalUri>http://dossier/consume-dev/api/dossier/1D2F562F4CF5FA9BCC8203B7A7F293B8/instance/6DF9983A11E600B5E6940080EFD56AF3/page/p48/instance/6EB53C0311E600B5E6940080EF15EBF6</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="b01944b8-fd7c-477b-89ac-2f153aa5821f" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>X-MSTR-ISession</con:entry><con:entry>Cookie</con:entry><con:entry>X-MSTR-ProjectID</con:entry><con:entry>dossierId</con:entry><con:entry>dossierInstanceId</con:entry><con:entry>pageKey</con:entry><con:entry>pageInstanceId</con:entry><con:entry>Accept</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="s_ComparePageData" id="3ef1007a-6862-4ef9-a3ea-25f77e8f5cc4"><con:settings/><con:config><script>/*
+Author and Date: Lizhu; 2016/5/3
+Purpose: compare the grid value in the json file
+*/
+
+import groovy.json.*  
+import com.eviware.soapui.support.JsonUtil
+import java.io.File 
+
+//get response Json
+def response = testRunner.testCase.getTestStepByName("getPageInstance").getProperty("Response").getValue()
+//parse json, get the wanted values
+//log.info response.class
+
+if(JsonUtil.isValidJson(response))
+  def json = new JsonSlurper().parseText(response)
+  def output = json.data//.layouts[0].sections[0].subsections[0].objects[1].panels[0].objects[0].panels[0].objects[0].gvs.items.items
+
+//log.info json
+//read json from baseline
+//def file = new FileReader('./baseline/TC01_01.json')
+//def strContent = file.text;
+//
+//def ui = new JsonSlurper().parseText(strContent)
+//def output = ui.data.layouts[0].sections[0].subsections[0].objects[1].panels[0].objects[0].panels[0].objects[0].gvs.items.items
+</script></con:config></con:testStep><con:testStep type="groovy" name="Final_ResetEnvironmentVariables" id="d6bea485-3e40-4a13-b929-c0e5c889c459"><con:settings/><con:config><script>/*
 Author and Date: Lizhu; 2016/5/3
 Purpose: Reset all temporary variables value, to maintain the scripts in GitHub
 */
